@@ -1,0 +1,32 @@
+import os
+import datetime
+#import time
+from datetime import datetime
+from os.path import getctime
+from shutil import copyfile
+
+old_dir = input("pls enter old directory path: ")
+new_dir_path = input("pls enter new directory path: ")
+
+def mod_date(filename):
+    p=filename[1:5];
+    print (p);
+    return p;
+#def mod_date(filename):
+#    p = datetime.fromtimestamp(getctime(old_dir+filename)).strftime('%m-%d-%Y')
+#    print(p);
+#    return p;
+
+##################################################################
+
+
+
+ls = os.listdir(old_dir)
+
+for filename in ls:
+    name_mod_dir = mod_date(filename)
+    if os.path.isdir(new_dir_path + name_mod_dir) == False:
+        os.mkdir(new_dir_path + name_mod_dir)
+
+
+    copyfile(old_dir + filename       ,      new_dir_path +'/'+ name_mod_dir +'/'+filename)
